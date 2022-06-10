@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Lato&family=VT323&display=swap');
+
+:root {
+    --machine-bg-color: rgb(41, 41, 41);
+    --label-border-color: rgb(147, 147, 147);
+}
+
+
+/****************
+* Global Styles *
+****************/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: rgb(128, 184, 205);
+}
+
+#app {
+    min-width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+}
+
+#drum-machine {
+    display: grid;
+    grid-template-columns: 60% auto;
+    width: 600px;
+    height: 420px;
+    background-color: var(--machine-bg-color);
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    border-bottom: solid black 7px;
+    border-right: solid black 7px;
+}
+
+/************
+* Drum Pads *
+************/
+#drum-pad-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    height: 300px;
+    margin: auto;
+    gap: 10px;
+    padding: 1rem;
+    border: solid black 3px;
+    border-radius: 5px;
+}
+
+.drum-pad {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    background-color: rgb(235, 235, 235);
+    border-bottom: solid rgb(157, 157, 157) 3px;
+    border-right: solid rgb(157, 157, 157) 3px;
+    font-size: 2rem;
+    font-family: 'Audiowide', cursive;
+    color: rgb(180, 180, 180);
+    outline: none;
+}
+
+.drum-pad:hover {
+    cursor: pointer;
+}
+
+/***********
+* Controls *
+***********/
+#controls {
+    position: relative;
+    padding: 0.5rem;
+    height: 100%;
+}
+
+/**********
+* Display *
+**********/
+#display-container {
+    background-color: black;
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+    border-radius: 5px;
+}
+
+#display {
+    background-color: blue;
+    height: 1.4rem;
+    color: white;
+    border-radius: 2px;
+    padding: 0.5rem;
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+    overflow: hidden;
+}
+
+#machine-name {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 1.7rem;
+    margin-top: 0.5rem;
+    font-family: 'Audiowide', cursive;
+}
+
+/***************
+ Volume Slider *
+ **************/
+.ctrl-container {
+    margin-top: 25px;
+    border: solid 2px var(--label-border-color);
+    border-radius: 3px;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.ctrl-label {
+    position: absolute;
+    top: -10px;
+    background-color: var(--machine-bg-color);
+    padding: 0 5px;
+}
+
+#volume-ctrl {
+    margin-top: 10px;
+    margin-bottom: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 13px;
+    outline: none;
+    background: linear-gradient(to bottom, rgb(76, 76, 76) 40%, black 40%, black 60%, rgb(76, 76, 76) 60%);
+    border-radius: 2px;
+}
+
+#volume-ctrl:hover, #volume-ctrl::-webkit-slider-thumb {
+    cursor: pointer;
+}
+
+#volume-ctrl::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 25px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    background: linear-gradient(to right, rgb(0, 107, 142) 40%, rgb(200, 200, 200) 40%, rgb(200, 200, 200) 60%, rgb(0, 107, 142) 60%);
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px rgba(20,20,20,0.7);
+}
+
+/*************
+* Sound Bank *
+*************/
+#bank-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#bank-container-label {
+    justify-self: flex-start;
+}
+
+.bank-btn-label {
+    position: relative;
+    margin-top: 4px;
+    margin-bottom: 5px;
+    height: 3.6rem;
+    padding: 0 1rem;
+}
+
+.bank-btn-radio {
+    appearance: none;
+}
+
+.bank-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%,0);
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255, 204, 0);
+    border-radius: 2px;
+    border-right: solid 3px rgb(223, 168, 0);
+    border-bottom: solid 3px rgb(223, 168, 0);
+    border-left: solid 3px rgba(0, 0, 0, 0);
+    border-top: solid 3px rgba(0, 0, 0, 0);
+}
+
+.bank-btn-radio:checked ~ .bank-btn {
+    background-color: rgb(245, 245, 0);
+    border-left: solid 3px rgb(243, 186, 16);
+    border-top: solid 3px rgb(243, 186, 16);
+    border-right: solid 3px rgba(0, 0, 0, 0);
+    border-bottom: solid 3px rgba(0, 0, 0, 0);
+    box-shadow: 0 0 5px rgb(245, 245, 0);
+}
+
+.bank-btn:hover {
+    cursor: pointer;
+}
+
+
+/***************
+* Power Button *
+***************/
+#power-btn-container {
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+}
+
+#power-label {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+#power-btn {
+    position: absolute;
+    background-color: rgb(188, 31, 31);
+    width: 30px;
+    height: 30px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 3px;
+    border-right: solid rgba(158, 23, 23, 0);
+    border-bottom: solid rgba(158, 23, 23, 0);
+    border-left: solid rgb(158, 23, 23);
+    border-top: solid rgb(158, 23, 23);
+    background-color: red;
+    box-shadow: 0 0 8px red;
+}
+
+#power-btn:hover {
+    cursor: pointer;
+}
+
+#power-btn-checkbox {
+    display: none;
+}
+
+#power-btn-checkbox:checked ~ #power-btn {
+    border-right: solid rgb(158, 23, 23);
+    border-bottom: solid rgb(158, 23, 23);
+    border-left: solid rgba(158, 23, 23, 0);
+    border-top: solid rgba(158, 23, 23, 0);
+    box-shadow: none;
+}
+
+
+/**********
+* Address *
+**********/
+footer {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+}
+
+address {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+}
+
+footer a {
+    color:rgb(6, 69, 90);
+}
+
+footer > p {
+    font-size: 0.9rem;
+}
+
+footer a:hover {
+    color: rgb(189, 57, 0);
+}
+
+
+/*****************************
+* Media Query - Small Sceens *
+*****************************/
+@media (max-width: 630px) {
+    #drum-machine {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        grid-template-areas: controls / pad;
+        width: 360px;
+        height: 800px;
+    }
+
+    #app {
+        width: 100%;
+        height: 100%;
+    }
+}
