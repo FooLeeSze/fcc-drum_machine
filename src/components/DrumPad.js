@@ -46,13 +46,24 @@ export default function DrumPad(props) {
 
     // Function to activate pad on key down
     function handleKeyDown(event) {
+        
         var key = event.key;
         var keyCode = props.id.toLowerCase();
         
         if(key === keyCode || key === keyCode.toUpperCase()) {
             let id = key.toUpperCase();
             activatePad(id)
-            setTimeout(() => setActive(false), 100)
+        }
+    }
+
+    // Function to activate pad on key up
+    function handleKeyUp(event) {
+        
+        var key = event.key;
+        var keyCode = props.id.toLowerCase();
+        
+        if(key === keyCode || key === keyCode.toUpperCase()) {
+            handleDeactivate()
         }
     }
 
@@ -62,18 +73,26 @@ export default function DrumPad(props) {
         elem.pause();
     }
 
-    // Listen/stop listening for keydown on power on/off
+    // Listen/stop listening for key down on power on/off & change in volume
     useEffect( () => {
         window.addEventListener('keydown', handleKeyDown);
         return () =>  window.removeEventListener('keydown', handleKeyDown);
-    }, [power])
+    }, [power, volume])
 
+
+    // Listen/stop listening for key up on power on/off & change in volume
+    useEffect( () => {
+        window.addEventListener('keyup', handleKeyUp);
+        return () =>  window.removeEventListener('keyup', handleKeyUp);
+    }, [power, volume])
+
+    
     // Stop playing sound when power off
     useEffect(stopSound, [power])
 
     return (
         <button style={active ? drumPadActiveStyle : drumPadNormalStyle} type="button" className="drum-pad"  id={`${props.id}-pad`}
-                onMouseDown={handleClick} onMouseUp={handleDeactivate} onKeyDown={handleKeyDown} tabIndex="0">{props.id}
+                onMouseDown={handleClick} onMouseUp={handleDeactivate} tabIndex="0">{props.id}
             <audio className="clip" src={audioFiles[props.index]} type="audio/wav" id={props.id}>
             </audio>
         </button>
