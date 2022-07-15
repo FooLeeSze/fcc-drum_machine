@@ -169,6 +169,19 @@ body {
     box-shadow: 2px 2px 5px rgba(20,20,20,0.7);
 }
 
+#volume-ctrl::-moz-range-thumb {
+    appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 25px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    background: linear-gradient(to right, rgb(0, 107, 142) 40%, rgb(200, 200, 200) 40%, rgb(200, 200, 200) 60%, rgb(0, 107, 142) 60%);
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px rgba(20,20,20,0.7);
+    border: none;
+}
+
 /*************
 * Sound Bank *
 *************/
